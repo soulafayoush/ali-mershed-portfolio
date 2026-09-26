@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ali-mershed-portfolio.vercel.app/sitemap.xml
