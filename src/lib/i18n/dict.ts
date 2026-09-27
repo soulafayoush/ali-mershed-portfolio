@@ -33,8 +33,6 @@ export type Dict = {
     whatDistinguishesTitle: string; whatDistinguishes: string[];
     experienceTitle: string; experienceRole: string; experienceOrg: string; experiencePeriod: string; experiencePoints: string[];
     expertiseTitle: string; expertise: string[];
-    educationTitle: string; education: { degree: string; year: string; source: string }[];
-    languagesTitle: string; languages: { name: string; level: string }[];
     skillsTitle: string; skillGroups: { title: string; items: string[] }[];
     otherSkillsTitle: string; otherSkills: string[];
   };
@@ -71,7 +69,7 @@ const en: Dict = {
     titleLine2: "Video Editor · AI Content Creator",
     roles: ["Graphic Design", "Video Editing", "AI Content", "Creative Advertising"],
     subtitle:
-      "I design advertising content for products and services — from the idea, to the design, to the final cut. I use AI as a tool under my direction, not as a replacement for the designer.",
+      "I create advertising content for products and services — from the initial idea to the final deliverable. I use AI as a tool under my direction, not as a replacement for the designer.",
     primaryCta: "View My Work",
     secondaryCta: "Let's Work Together",
     scrollHint: "Scroll to explore",
@@ -109,7 +107,7 @@ const en: Dict = {
     videoBadge: "Video",
   },
   process: {
-    title: "My Process", eyebrow: "How I Work",
+    title: "How I Work", eyebrow: "How I Work",
     subtitle: "Every project goes through these six steps. No shortcuts.",
     steps: [
       { num: "01", title: "Brief", desc: "Understand the product, the goal, the audience, and the platform. Nothing starts before this is clear." },
@@ -130,7 +128,7 @@ const en: Dict = {
     intro: [
       "I am Ali Mershed Mohamad, from Latakia, Syria. I work as a graphic designer, video editor, and AI content creator.",
       "I design advertising content for products and services — from the idea and concept, through design and direction, to editing and final delivery. I use AI as part of the workflow, but the thinking, the visual direction, the selection, and the final call remain mine.",
-      "Alongside content creation, I teach computer fundamentals online. Since February 2026, I have trained around 1,100 trainees.",
+      "Alongside content creation, I teach computer fundamentals online. Since February 2026, I have helped approximately 1,100 people learn computer fundamentals.",
     ],
     whatDistinguishesTitle: "What distinguishes my work",
     whatDistinguishes: [
@@ -150,17 +148,12 @@ const en: Dict = {
     experiencePoints: [
       "Trained around 1,100 trainees in computer fundamentals.",
       "Helped learners understand computer hardware and how to use it.",
+      "Certified International Trainer (ICDL).",
+      "Delivered Data Entry and Microsoft Excel training programs.",
     ],
     expertiseTitle: "Areas of Expertise",
-    expertise: ["Graphic Design", "Video Editing", "AI Content Creation", "Creative Advertising", "Social Media Content", "Computer Training", "Microsoft Office", "Data Entry", "Accounting Software"],
-    educationTitle: "Education",
-    education: [{ degree: "General Secondary Education", year: "Graduated 2016", source: "Directorate of Education — Latakia Governorate" }],
-    languagesTitle: "Languages",
-    languages: [
-      { name: "Arabic", level: "Native" },
-      { name: "English", level: "Good" },
-    ],
-    skillsTitle: "Tools, by function",
+    expertise: ["Graphic Design", "Video Editing", "AI Content Creation", "Creative Advertising", "Social Media Content", "Computer Training", "Microsoft Office", "Microsoft Excel", "Data Entry", "ICDL", "Accounting Software"],
+    skillsTitle: "Tools I Use",
     skillGroups: [
       { title: "Design & Editing", items: ["Adobe Photoshop", "Adobe Premiere Pro", "Adobe After Effects", "Canva", "CapCut", "InShot"] },
       { title: "AI Image", items: ["Gemini", "Nano Banana", "Google Flow"] },
@@ -192,9 +185,9 @@ const en: Dict = {
     title: "Client Feedback", eyebrow: "Clients",
     subtitle: "Short messages from people I have worked with. More will be added as permissions come in.",
     items: [
-      { quote: "Clean work, delivered on time. He understood what I wanted from the first brief.", author: "Client", role: "Social Media Design" },
-      { quote: "Built me an ad that beat what I had in mind.", author: "Client", role: "Product Ad" },
-      { quote: "On time, open to feedback, easy to work with.", author: "Client", role: "Video Editing" },
+      { quote: "Clean work, delivered on time. He understood what I wanted from the first brief.", author: "Anjiko", role: "Product Ad — Anjiko Company" },
+      { quote: "Creative ideas that fit our brand perfectly. The AI direction was on point.", author: "Shawarmaty", role: "Social Media — Shawarmaty Brand" },
+      { quote: "On time, open to feedback, easy to work with.", author: "Zawalis", role: "Video Editing — Zawalis Organization" },
     ],
   },
   contact: {
@@ -223,13 +216,13 @@ const ar: Dict = {
     about: "نبذة", contact: "تواصل", cta: "لنعمل معاً", lang_label: "English",
   },
   hero: {
-    eyebrow: "مصمم جرافيك · محرر فيديو · صانع محتوى بالذكاء الاصطناعي",
+    eyebrow: "مصمم جرافيك · محرر فيديو · صانع محتوى باستخدام الذكاء الاصطناعي",
     name: "علي مرشد محمد",
     titleLine1: "مصمم جرافيك",
-    titleLine2: "محرر فيديو · صانع محتوى بالذكاء الاصطناعي",
+    titleLine2: "محرر فيديو · صانع محتوى باستخدام الذكاء الاصطناعي",
     roles: ["تصميم جرافيك", "تحرير فيديو", "محتوى ذكاء اصطناعي", "إعلانات إبداعية"],
     subtitle:
-      "أصمّم محتوى إعلانياً للمنتجات والخدمات — من الفكرة، إلى التصميم، إلى القصّة النهائية. وأستخدم الذكاء الاصطناعي بوصفه أداةً تحت توجيهي، لا بديلاً عنّي.",
+      "أصمّم محتوى إعلانياً للمنتجات والخدمات — من الفكرة والتصوّر إلى التصميم والمخرج النهائي. وأستخدم الذكاء الاصطناعي كأداةً ضمن عملي، لا بديلاً عنّي.",
     primaryCta: "استعرض أعمالي",
     secondaryCta: "لنعمل معاً",
     scrollHint: "مرّر للاستكشاف",
@@ -242,16 +235,16 @@ const ar: Dict = {
   },
   services: {
     title: "الخدمات", eyebrow: "ماذا أقدّم",
-    subtitle: "من الفكرة إلى التسليم النهائي — تصميم، وفيديو، ومحتوى بالذكاء الاصطناعي، تحت توجيه واحد.",
+    subtitle: "من الفكرة إلى التسليم النهائي — تصميم، وفيديو، ومحتوى باستخدام الذكاء الاصطناعي، تحت توجيه واحد.",
     items: [
       { id: "graphic", title: "تصميم جرافيك", tagline: "محتوى إعلاني للمنتجات والخدمات والعلامات التجارية.", includes: ["منشورات السوشال ميديا", "تصاميم إعلانية", "إعلانات المنتجات", "تصاميم ترويجية", "بروشورات وفلايرز", "مواد تسويق رقمي"] },
-      { id: "video", title: "تحرير فيديو", tagline: "مونتاج وإخراج الإعلانات وفيديوهات السوشال ميديا.", includes: ["Reels", "فيديوهات ترويجية", "فيديوهات منتجات", "فيديوهات سوشال", "انتقالات ومؤثرات", "لون وصوت"] },
-      { id: "ai", title: "صناعة محتوى بالذكاء الاصطناعي", tagline: "صور وفيديوهات وإعلانات بالذكاء الاصطناعي — تحت توجيهي.", includes: ["توليد الصور", "تصوير المنتجات", "مرئيات إعلانية", "صناعة فيديو", "صورة إلى فيديو", "مفاهيم إبداعية"] },
-      { id: "creative-ads", title: "إعلانات إبداعية", tagline: "تطوير أفكار إعلانية أصيلة، لا قوالب جاهزة.", includes: ["تطوير الفكرة", "مفاهيم بصرية", "توجيه مناسب للعلامة", "إخراج مخصّص للمنصّة"] },
-      { id: "ai-product", title: "إعلانات المنتجات بالذكاء الاصطناعي", tagline: "تحويل المنتجات الحقيقية إلى مشاهد إعلانية مع الحفاظ على هويتها.", includes: ["شكل المنتج", "الألوان والشعار", "الكتابة والتفاصيل", "الهوية البصرية"] },
+      { id: "video", title: "تحرير فيديو", tagline: "مونتاج وإخراج الإعلانات وفيديوهات السوشال ميديا.", includes: ["Reels", "فيديوهات ترويجية", "فيديوهات منتجات", "فيديوهات سوشال", "انتقالات ومؤثرات", "تصحيح الألوان ومعالجة الصوت"] },
+      { id: "ai", title: "صناعة محتوى باستخدام الذكاء الاصطناعي", tagline: "صور وفيديوهات وإعلانات باستخدام الذكاء الاصطناعي — تحت توجيهي.", includes: ["توليد الصور", "تصوير المنتجات", "مرئيات إعلانية", "صناعة فيديو", "صورة إلى فيديو", "مفاهيم إبداعية"] },
+      { id: "creative-ads", title: "إعلانات إبداعية", tagline: "تطوير أفكار إعلانية أصيلة، لا قوالب جاهزة.", includes: ["تطوير الفكرة", "مفاهيم بصرية", "توجيه متوافق مع هوية العلامة التجارية الحالية", "إخراج مخصّص للمنصّة"] },
+      { id: "ai-product", title: "إعلانات المنتجات باستخدام الذكاء الاصطناعي", tagline: "تحويل المنتجات الحقيقية إلى مشاهد إعلانية مع الحفاظ على هويتها.", includes: ["شكل المنتج", "الألوان والشعار", "النصوص والتفاصيل البصرية", "الهوية البصرية"] },
     ],
     flowLabel: "الفكرة الأساسية",
-    flowValue: "فكرة ← مفهوم ← توجيه ← تصميم ← ذكاء اصطناعي ← تحرير ← مرئي نهائي",
+    flowValue: "فكرة ← مفهوم ← توجيه ← تصميم ← ذكاء اصطناعي ← تحرير ← النتيجة البصرية النهائية",
   },
   works: {
     title: "أعمال مختارة", eyebrow: "الأعمال",
@@ -261,11 +254,11 @@ const ar: Dict = {
     caseLabels: { brief: "الموجز", concept: "المفهوم", role: "دوري", tools: "الأدوات", process: "العملية", result: "النتيجة النهائية", aiFlow: "مراحل الذكاء الاصطناعي" },
     before: "قبل", after: "بعد", swipeHint: "اسحب للمقارنة",
     caseFlow: "المشروع ← الموجز ← المفهوم ← دوري ← الأدوات ← العملية ← النتيجة",
-    aiCaseFlow: "فكرة ← توليد ← توجيه ← تحرير ← مرئي نهائي",
+    aiCaseFlow: "فكرة ← توليد ← توجيه ← تحرير ← النتيجة البصرية النهائية",
     videoBadge: "فيديو",
   },
   process: {
-    title: "منهجيتي", eyebrow: "كيف أعمل",
+    title: "كيف أعمل", eyebrow: "كيف أعمل",
     subtitle: "يمرّ كل مشروع بهذه الخطوات الستّ. بلا اختصارات.",
     steps: [
       { num: "01", title: "الموجز (Brief)", desc: "فهم المنتج والهدف والجمهور والمنصّة. لا يبدأ شيء قبل أن تتّضح هذه." },
@@ -282,11 +275,11 @@ const ar: Dict = {
   },
   about: {
     title: "نبذة عن علي", eyebrow: "نبذة",
-    subtitle: "مصمم جرافيك · محرر فيديو · صانع محتوى بالذكاء الاصطناعي",
+    subtitle: "مصمم جرافيك · محرر فيديو · صانع محتوى باستخدام الذكاء الاصطناعي",
     intro: [
-      "أنا علي مرشد محمد، من اللاذقية في سوريا. أعمل مصمّم جرافيك ومحرّر فيديو وصانع محتوى بالذكاء الاصطناعي.",
+      "أنا علي مرشد محمد، من اللاذقية في سوريا. أعمل مصمّم جرافيك ومحرّر فيديو وصانع محتوى باستخدام الذكاء الاصطناعي.",
       "أصمّم محتوى إعلانياً للمنتجات والخدمات — من الفكرة والمفهوم، مروراً بالتصميم والتوجيه، وصولاً إلى المونتاج والتسليم النهائي. وأُدمج الذكاء الاصطناعي في سير عملي، غير أنّ التفكير والتوجيه البصري والاختيار والقرار النهائي تبقى لي.",
-      "إلى جانب صناعة المحتوى، أُدرّس أساسيات الحاسوب عبر الإنترنت. ومنذ شباط 2026، درّبت نحو 1,100 متدرّب.",
+      "إلى جانب صناعة المحتوى، أُدرّس أساسيات الحاسوب عبر الإنترنت. ومنذ شباط 2026، ساعدتُ نحو 1,100 شخص على تعلّم أساسيات الحاسوب.",
     ],
     whatDistinguishesTitle: "ما الذي يميّز عملي",
     whatDistinguishes: [
@@ -306,17 +299,12 @@ const ar: Dict = {
     experiencePoints: [
       "درّبت نحو 1,100 متدرّب في أساسيات الحاسوب.",
       "ساعدت المتدرّبين على فهم مكوّنات الحاسوب وطرق استخدامه.",
+      "مدرّب دولي معتمد (ICDL).",
+      "قدّمت برامج تدريبية في إدخال البيانات ومايكروسوفت Excel.",
     ],
     expertiseTitle: "مجالات الخبرة",
-    expertise: ["تصميم جرافيك", "تحرير فيديو", "صناعة محتوى بالذكاء الاصطناعي", "إعلانات إبداعية", "محتوى السوشال ميديا", "تدريب حاسوبي", "مايكروسوفت أوفيس", "إدخال بيانات", "برامج محاسبة"],
-    educationTitle: "التعليم",
-    education: [{ degree: "الثانوية العامة", year: "تخرّجت 2016", source: "مديرية التربية في محافظة اللاذقية" }],
-    languagesTitle: "اللغات",
-    languages: [
-      { name: "العربية", level: "اللغة الأم" },
-      { name: "الإنجليزية", level: "جيد" },
-    ],
-    skillsTitle: "الأدوات، حسب الوظيفة",
+    expertise: ["تصميم جرافيك", "تحرير فيديو", "صناعة محتوى باستخدام الذكاء الاصطناعي", "إعلانات إبداعية", "محتوى لوسائل التواصل الاجتماعي", "تدريب حاسوبي", "مايكروسوفت أوفيس", "مايكروسوفت Excel", "إدخال بيانات", "ICDL", "برامج محاسبة"],
+    skillsTitle: "الأدوات التي أستخدمها",
     skillGroups: [
       { title: "التصميم والتحرير", items: ["Adobe Photoshop", "Adobe Premiere Pro", "Adobe After Effects", "Canva", "CapCut", "InShot"] },
       { title: "صور بالذكاء الاصطناعي", items: ["Gemini", "Nano Banana", "Google Flow"] },
@@ -348,9 +336,9 @@ const ar: Dict = {
     title: "آراء العملاء", eyebrow: "العملاء",
     subtitle: "رسائل قصيرة من أشخاص عملت معهم. وستُضاف آراء أخرى عند الاستئذان.",
     items: [
-      { quote: "عمل نظيف، وسُلّم في موعده. وقد فهم المطلوب من أوّل موجز.", author: "عميل", role: "تصميم سوشال ميديا" },
-      { quote: "صمّم لي إعلاناً فاق ما كنت أتصوّره.", author: "عميل", role: "إعلان منتج" },
-      { quote: "في الوقت المحدّد، ويقبل الملاحظات، وسهل في التعامل.", author: "عميل", role: "مونتاج فيديو" },
+      { quote: "عمل نظيف، وسُلّم في موعده. وقد فهم المطلوب من أوّل موجز.", author: "أنجيكو", role: "إعلان منتج — شركة أنجيكو" },
+      { quote: "أفكار إبداعية ناسبت علامتنا تماماً. والتوجيه بالذكاء الاصطناعي كان دقيقاً.", author: "شاورماتي", role: "سوشال ميديا — علامة شاورماتي" },
+      { quote: "في الوقت المحدّد، ويقبل الملاحظات، وسهل في التعامل.", author: "زوالريس", role: "مونتاج فيديوهات — منظمة زوالريس" },
     ],
   },
   contact: {
@@ -367,7 +355,7 @@ const ar: Dict = {
   footer: {
     rights: "جميع الحقوق محفوظة.", builtWith: "صُنع بعناية.",
     quickLinks: "روابط سريعة",
-    tagline: "مصمّم جرافيك ومحرّر فيديو وصانع محتوى بالذكاء الاصطناعي — أبني محتوى إعلانياً من الفكرة إلى القصّة النهائية.",
+    tagline: "مصمّم جرافيك ومحرّر فيديو وصانع محتوى باستخدام الذكاء الاصطناعي — أبني محتوى إعلانياً من الفكرة إلى القصة النهائية.",
   },
   mobileNav: { home: "الرئيسية", work: "الأعمال", services: "الخدمات", contact: "تواصل" },
 };

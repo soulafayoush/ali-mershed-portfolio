@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
-  GraduationCap, CheckCircle2, Languages as LanguagesIcon, Briefcase, Sparkles, Layers,
+  GraduationCap, CheckCircle2, Briefcase, Sparkles, Layers,
 } from "lucide-react";
 import { useLanguage } from "@/components/i18n/language-provider";
 
@@ -112,39 +112,6 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-5 space-y-6">
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">
-              <div className="flex items-center gap-2 text-gold-accent mb-4">
-                <GraduationCap className="w-5 h-5" />
-                <h3 className="text-base font-semibold uppercase tracking-[0.18em]">{t.about.educationTitle}</h3>
-              </div>
-              <div className="space-y-4">
-                {t.about.education.map((edu, i) => (
-                  <div key={i} className="border-s-2 border-gold-accent/40 ps-4">
-                    <div className="text-sm font-semibold text-cream-text">{edu.degree}</div>
-                    <div className="text-xs text-gold-accent mt-1">{edu.year}</div>
-                    <div className="text-xs text-cream-dim mt-0.5">{edu.source}</div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">
-              <div className="flex items-center gap-2 text-gold-accent mb-4">
-                <LanguagesIcon className="w-5 h-5" />
-                <h3 className="text-base font-semibold uppercase tracking-[0.18em]">{t.about.languagesTitle}</h3>
-              </div>
-              <div className="space-y-3">
-                {t.about.languages.map((lang, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                    <span className="text-sm text-cream-text font-medium">{lang.name}</span>
-                    <span className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-electric-blue/10 text-electric-blue border border-electric-blue/30">{lang.level}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">
               <h3 className="text-base font-semibold uppercase tracking-[0.18em] text-gold-accent mb-5">{t.about.skillsTitle}</h3>

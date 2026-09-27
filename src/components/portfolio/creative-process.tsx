@@ -17,8 +17,7 @@ export default function CreativeProcess() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }} className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold-accent font-semibold">{t.process.eyebrow}</span>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-gradient-gold">{t.process.title}</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gradient-gold">{t.process.title}</h2>
           <div className="gold-divider my-6 w-32" />
           <p className="text-base sm:text-lg text-cream-muted leading-relaxed">{t.process.subtitle}</p>
         </motion.div>
@@ -42,17 +41,17 @@ export default function CreativeProcess() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }} className="mt-16 relative rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 opacity-50"
+          transition={{ duration: 0.8 }} className="mt-20 mb-12 relative rounded-3xl">
+          <div className="absolute inset-0 rounded-3xl opacity-50"
             style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(100,255,218,0.04) 100%)" }} />
-          <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-          <div className="relative grid lg:grid-cols-12 gap-8 p-8 sm:p-12 items-center">
+          <div className="absolute inset-0 rounded-3xl bg-grid-pattern opacity-20" />
+          <div className="relative grid lg:grid-cols-12 gap-8 p-8 sm:p-12 pb-16 items-center">
             <div className="lg:col-span-3 flex lg:justify-center">
               <motion.div animate={{ rotate: [0, 8, -8, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl grid place-items-center"
                 style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.2), rgba(100,255,218,0.1))",
                   border: "1px solid rgba(212,175,55,0.4)",
-                  boxShadow: "0 0 60px -10px rgba(212,175,55,0.4), inset 0 0 30px -10px rgba(212,175,55,0.2)" }}>
+                  boxShadow: "0 0 60px -10px rgba(212,175,55,0.4)" }}>
                 <Brain className="w-12 h-12 text-gold-accent" />
               </motion.div>
             </div>

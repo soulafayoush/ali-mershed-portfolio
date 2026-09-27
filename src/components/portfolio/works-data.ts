@@ -138,24 +138,6 @@ export const works: Work[] = [
     result: { en: "Premium AI ad visual delivered for digital advertising.", ar: "مرئي إعلاني فاخر بالذكاء الاصطناعي سُلّم للإعلانات الرقمية." },
     hasBeforeAfter: true,
   },
-  {
-    id: "ai-loan",
-    category: "ai",
-    title: { en: "AI Ad — Loan Service", ar: "إعلان ذكاء اصطناعي — خدمة قروض" },
-    client: { en: "Financial Service", ar: "خدمة مالية" },
-    year: "2025",
-    image: "/assets/work/ai-loan.webp",
-    imageThumb: "/assets/work/ai-loan-thumb.webp",
-    accent: "linear-gradient(135deg, #1E3A5F 0%, #AA7C11 100%)",
-    isAi: true,
-    brief: { en: "AI-generated ad visual for a financial/loan service — trustworthy and modern.", ar: "مرئي إعلاني مولّد بالذكاء الاصطناعي لخدمة مالية/قروض — موثوق وعصري." },
-    concept: { en: "Clean composition, premium trust signals, modern typography.", ar: "تركيب نظيف، إشارات ثقة فاخرة، طباعة عصرية." },
-    role: { en: "Creative Director & AI Practitioner — idea, generation, direction, editing, delivery.", ar: "مدير إبداعي وممارس ذكاء اصطناعي — الفكرة، التوليد، التوجيه، التحرير، التسليم." },
-    tools: ["Gemini", "Google Flow", "Adobe Photoshop"],
-    process: { en: "Idea → AI Generation → Creative Direction → Editing → Final Visual.", ar: "الفكرة ← التوليد بالذكاء الاصطناعي ← التوجيه الإبداعي ← التحرير ← المرئي النهائي." },
-    result: { en: "Trust-driven AI ad visual delivered for digital advertising.", ar: "مرئي إعلاني بالذكاء الاصطناعي يحمل إشارات ثقة سُلّم للإعلانات الرقمية." },
-    hasBeforeAfter: true,
-  },
 
   // ===== VIDEO =====
   {

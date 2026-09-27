@@ -22,6 +22,7 @@ export default function SelectedWorks() {
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const filtered = filter === "all" ? works : works.filter((w) => w.category === filter);
+  // Horizontal scroll only for LTR. For RTL, use static layout to avoid left-shift issues.
   const xTarget = useTransform(scrollYProgress, [0, 1], ["0%", "-78%"]);
 
   const filters: { id: Filter; label: string }[] = [
@@ -74,16 +75,28 @@ export default function SelectedWorks() {
         </div>
       </div>
 
-      <div className="relative mt-12 hidden md:block h-[460px] overflow-hidden">
-        <motion.div ref={trackRef} style={{ x: xTarget, direction: dir === "rtl" ? "rtl" : "ltr" }}
+      {/* Desktop horizontal scroll (LTR only). RTL uses a clean static grid. */}
+      <div className="relative mt-12 hidden md:block h-[460px] overflow-hidden" style={{ display: dir === "rtl" ? "none" : undefined }}>
+        <motion.div ref={trackRef} style={{ x: xTarget }}
           className="flex gap-6 ps-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pe-[20vw] h-full">
           {filtered.map((work, i) => (
-            <WorkCard key={work.id} work={work} index={i} onOpen={() => setActive(work)} />
+            <WorkCard key={work.id} work={work} onOpen={() => setActive(work)} />
           ))}
         </motion.div>
         <div className="pointer-events-none absolute inset-y-0 start-0 w-32 bg-gradient-to-r from-[#0A192F] to-transparent rtl-flip" />
         <div className="pointer-events-none absolute inset-y-0 end-0 w-32 bg-gradient-to-l from-[#0A192F] to-transparent rtl-flip" />
       </div>
+
+      {/* RTL: static grid layout for desktop (avoids horizontal-scroll shift issues) */}
+      {dir === "rtl" && (
+        <div className="hidden md:grid mt-12 gap-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))" }}>
+          {filtered.map((work) => (
+            <div key={work.id} className="h-[440px]">
+              <WorkCard work={work} onOpen={() => setActive(work)} />
+            </div>
+          ))}
+        </div>
+      )}
 
       <MobileCarousel works={filtered} onOpen={(w) => setActive(w)} categoryColor={categoryColor} />
 
@@ -92,20 +105,22 @@ export default function SelectedWorks() {
   );
 }
 
-function WorkCard({ work, index, onOpen }: { work: Work; index: number; onOpen: () => void }) {
+function WorkCard({ work, onOpen }: { work: Work; onOpen: () => void }) {
   const { locale, t } = useLanguage();
-  const [hovered, setHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    if (!work.video || !videoRef.current) return;
-    if (hovered) {
+  const handleMouseEnter = () => {
+    if (work.video && videoRef.current) {
       videoRef.current.play().catch(() => {});
-    } else {
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (work.video && videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
-  }, [hovered, work.video]);
+  };
 
   const categoryColor =
     work.category === "graphic" ? "text-gold-accent border-gold-accent/40 bg-gold-accent/5"
@@ -120,26 +135,25 @@ function WorkCard({ work, index, onOpen }: { work: Work; index: number; onOpen: 
     : t.works.filters.selected;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
-      onHoverStart={() => setHovered(true)} onHoverEnd={() => setHovered(false)}
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={onOpen} data-cursor="hover"
-      className="group relative shrink-0 w-[360px] lg:w-[420px] h-full rounded-2xl overflow-hidden glass-card glass-card-hover cursor-pointer">
+      className="group relative shrink-0 w-[360px] lg:w-[420px] h-full rounded-2xl overflow-hidden glass-card cursor-pointer">
       <div className="relative h-[58%] overflow-hidden" style={{ background: work.accent }}>
         {work.video ? (
           <>
             <Image src={work.imageThumb} alt={work.title[locale]} fill sizes="(max-width: 768px) 80vw, 420px"
-              className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              className="object-cover" />
             <video ref={videoRef} src={work.video} muted loop playsInline preload="none"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gold-accent/90 grid place-items-center opacity-100 group-hover:opacity-0 transition-opacity">
+              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gold-accent/90 grid place-items-center opacity-100 group-hover:opacity-0">
               <Play className="w-5 h-5 text-navy-base fill-navy-base" />
             </div>
           </>
         ) : (
           <Image src={work.imageThumb} alt={work.title[locale]} fill sizes="(max-width: 768px) 80vw, 420px"
-            className="object-cover transition-transform duration-700 group-hover:scale-110" />
+            className="object-cover" />
         )}
         <div className="absolute inset-0 opacity-30 mix-blend-multiply" style={{ background: work.accent }} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent" />
@@ -160,22 +174,15 @@ function WorkCard({ work, index, onOpen }: { work: Work; index: number; onOpen: 
       <div className="p-5">
         <div className="text-xs text-cream-dim uppercase tracking-wider">{work.client[locale]}</div>
         <h3 className="mt-1 text-xl font-semibold text-cream-text leading-tight">{work.title[locale]}</h3>
-        <motion.div initial={false} animate={{ height: hovered ? "auto" : 0, opacity: hovered ? 1 : 0 }} transition={{ duration: 0.35 }} className="overflow-hidden">
-          <div className="flex flex-wrap gap-1 pt-3">
-            {work.tools.slice(0, 4).map((tool) => (
-              <span key={tool} className="px-2 py-0.5 rounded-md text-[10px] bg-navy-elevated/60 text-cream-muted border border-navy-line">{tool}</span>
-            ))}
-          </div>
-        </motion.div>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-cream-dim">{work.tools.length} {locale === "ar" ? "أدوات" : "tools"}</span>
-          <span className={cn("inline-flex items-center gap-1.5 text-xs font-semibold transition-all", hovered ? "text-gold-accent" : "text-cream-muted")}>
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-accent">
             {t.works.openCase}
             <ArrowRight className="w-3.5 h-3.5 rtl-flip" />
           </span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -369,21 +376,32 @@ function BeforeAfterSlider({ color, afterImage, value, onChange }: {
     <div ref={ref} className="relative h-40 sm:h-52 rounded-xl overflow-hidden select-none cursor-ew-resize touch-none"
       onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
       onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}>
+      {/* After (right side) — the final AI-directed visual */}
       <div className="absolute inset-0" style={{ background: color }}>
         <Image src={afterImage} alt="After" fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/40 to-transparent" />
       </div>
+      {/* Before (left side) — the initial raw input, before creative direction.
+          No real source image; shown as a dark placeholder representing the blank canvas. */}
       <div className="absolute inset-0"
         style={{ background: "linear-gradient(135deg, #0A192F 0%, #172A45 100%)", clipPath: `inset(0 ${100 - value}% 0 0)` }}>
-        <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-        <div className="absolute inset-0 grid place-items-center">
+        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-cream-dim/70 font-medium">
+            {locale === "ar" ? "الموجز الأولي" : "Initial Brief"}
+          </span>
           <span className="text-xs uppercase tracking-[0.3em] text-cream-dim font-semibold">
-            {locale === "ar" ? "قبل التوجيه" : "Before direction"}
+            {locale === "ar" ? "قبل التوجيه" : "Before Direction"}
           </span>
         </div>
       </div>
-      <div className="absolute top-0 bottom-0 w-0.5 bg-gold-accent" style={{ left: `${value}%`, transform: "translateX(-50%)" }}>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full grid place-items-center bg-gold-accent text-navy-base shadow-lg">
+      <div
+        className="absolute top-0 bottom-0 w-0.5 bg-gold-accent"
+        style={{ left: `${value}%`, transform: "translateX(-50%)" }}
+      >
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-gold-accent text-navy-base shadow-lg"
+        >
           <ArrowLeft className="w-3 h-3" />
           <ArrowRight className="w-3 h-3 -ms-1" />
         </div>

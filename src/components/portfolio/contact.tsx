@@ -18,7 +18,22 @@ export default function Contact() {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
     setSending(true);
-    await new Promise((r) => setTimeout(r, 900));
+
+    // Build a complete message body
+    const subject = locale === "ar" ? "استفسار مشروع" : "Project Inquiry";
+    const messageBody = `${locale === "ar" ? "رسالة جديدة من الموقع" : "New message from portfolio website"}\n\n${locale === "ar" ? "الاسم" : "Name"}: ${form.name}\n${locale === "ar" ? "البريد" : "Email"}: ${form.email}\n\n${locale === "ar" ? "الرسالة" : "Message"}:\n${form.message}`;
+
+    // Open email client with prefilled subject + body — sends directly to Ali's inbox
+    const mailtoUrl = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+    window.location.href = mailtoUrl;
+
+    // Also offer WhatsApp option — open in new tab after a short delay
+    setTimeout(() => {
+      const waUrl = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(messageBody)}`;
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+    }, 800);
+
+    await new Promise((r) => setTimeout(r, 600));
     setSending(false);
     setSent(true);
     setForm({ name: "", email: "", message: "" });

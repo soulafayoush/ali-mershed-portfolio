@@ -19,7 +19,7 @@ export default function ToolsMarquee() {
       <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-card/80 backdrop-blur border border-gold-accent/30 text-[10px] uppercase tracking-[0.25em] text-gold-accent font-semibold">
           <Sparkles className="w-3 h-3" />
-          {locale === "ar" ? "الأدوات اللي بشتغل فيها" : "Tools I work with"}
+          {locale === "ar" ? "الأدوات التي أستخدمها" : "Tools I Use"}
         </div>
       </div>
       <div className="relative flex overflow-hidden"

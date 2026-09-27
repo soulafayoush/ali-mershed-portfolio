@@ -33,14 +33,14 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.25] tracking-tight">
               <span className="block text-cream-text whitespace-nowrap">
                 {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
               </span>
-              <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-gradient-gold text-glow-gold whitespace-nowrap">
+              <span className="block mt-4 text-lg sm:text-xl lg:text-2xl text-gradient-gold text-glow-gold whitespace-nowrap">
                 {t.hero.titleLine1}
               </span>
-              <span className="block mt-1 text-base sm:text-xl lg:text-2xl text-cream-muted font-medium whitespace-nowrap">
+              <span className="block mt-2 text-sm sm:text-base lg:text-lg text-cream-muted font-medium whitespace-nowrap">
                 {t.hero.titleLine2}
               </span>
             </motion.h1>
@@ -108,13 +108,13 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Name overlay at bottom — show name in current language only */}
+                {/* Name overlay at bottom — show name in current language only, with proper spacing */}
                 <div className="absolute bottom-4 start-4 end-4">
-                  <div className="text-cream-text font-bold text-base sm:text-lg leading-tight whitespace-nowrap drop-shadow-lg">
+                  <div className="text-cream-text font-bold text-sm sm:text-base leading-tight whitespace-nowrap drop-shadow-lg">
                     {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
                   </div>
-                  <div className="text-gold-accent text-[10px] uppercase tracking-[0.2em] mt-1 drop-shadow">
-                    {locale === "ar" ? "مصمم · مونتير · صانع محتوى AI" : "Designer · Editor · AI Creator"}
+                  <div className="text-gold-accent text-[10px] uppercase tracking-[0.2em] mt-2 drop-shadow">
+                    {locale === "ar" ? "مصمم · مونتير · صانع محتوى بالذكاء الاصطناعي" : "Designer · Editor · AI Creator"}
                   </div>
                 </div>
               </div>
@@ -123,9 +123,10 @@ export default function Hero() {
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.6 }}
-          className="hidden lg:flex flex-col items-center gap-2 mt-16 text-cream-dim">
-          <span className="text-[10px] uppercase tracking-[0.3em]">{t.hero.scrollHint}</span>
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
+          className="hidden lg:flex flex-col items-center justify-center gap-2 mt-16 text-cream-dim w-full">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-center">{t.hero.scrollHint}</span>
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex items-center justify-center">
             <ArrowDown className="w-4 h-4 text-gold-accent" />
           </motion.div>
         </motion.div>
