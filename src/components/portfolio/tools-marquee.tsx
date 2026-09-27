@@ -7,13 +7,11 @@ import { useLanguage } from "@/components/i18n/language-provider";
 export default function ToolsMarquee() {
   const { locale } = useLanguage();
   const isRtl = locale === "ar";
-
   const tools = [
     "Adobe Photoshop", "Adobe Premiere Pro", "Adobe After Effects", "Canva", "CapCut", "InShot",
     "Gemini", "Nano Banana", "Google Flow", "Kling", "Veo", "Runway", "Pika", "Flash / Omni Flash",
     "Claude", "Manus", "ElevenLabs", "Lahajati", "Figma", "DaVinci Resolve",
   ];
-
   const loop = [...tools, ...tools];
 
   return (
@@ -24,7 +22,6 @@ export default function ToolsMarquee() {
           {locale === "ar" ? "الأدوات اللي بشتغل فيها" : "Tools I work with"}
         </div>
       </div>
-
       <div className="relative flex overflow-hidden"
         style={{
           maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",

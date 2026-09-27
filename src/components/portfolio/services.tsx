@@ -14,7 +14,6 @@ export default function Services() {
   return (
     <section id="services" className="relative py-24 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }} className="max-w-3xl">
@@ -30,14 +29,11 @@ export default function Services() {
           {t.services.items.map((service, i) => {
             const Icon = SERVICE_ICONS[service.id] ?? PenTool;
             return (
-              <motion.div key={service.id}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative rounded-2xl p-6 glass-card glass-card-hover">
+              <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: i * 0.08 }} className="group relative rounded-2xl p-6 glass-card glass-card-hover">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 rounded-xl grid place-items-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.18), rgba(100,255,218,0.08))",
-                      border: "1px solid rgba(212,175,55,0.3)" }}>
+                    style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.18), rgba(100,255,218,0.08))", border: "1px solid rgba(212,175,55,0.3)" }}>
                     <Icon className="w-5 h-5 text-gold-accent" />
                   </div>
                   <span className="text-3xl font-bold text-navy-line group-hover:text-gold-accent/20 transition-colors">

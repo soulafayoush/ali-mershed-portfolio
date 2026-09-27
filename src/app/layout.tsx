@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s · Ali Mershed Mohamad",
   },
   description:
-    "Bilingual portfolio of Ali Mershed Mohamad — Graphic Designer, Video Editor, and AI Content Creator from Damascus, Syria. Design, video, and AI-assisted advertising content from idea to final cut.",
+    "Bilingual portfolio of Ali Mershed Mohamad — Graphic Designer, Video Editor, and AI Content Creator from Latakia, Syria. Design, video, and AI-assisted advertising content from idea to final cut.",
   keywords: [
     "Ali Mershed Mohamad",
     "علي مرشد محمد",
@@ -42,27 +42,18 @@ export const metadata: Metadata = {
     "Video Editor",
     "AI Content Creator",
     "Creative Designer Syria",
-    "Damascus Designer",
+    "Latakia Designer",
     "Portfolio",
-    "Graphic Design",
-    "Video Editing",
-    "AI Advertising",
-    "Arabic Designer",
   ],
   authors: [{ name: "Ali Mershed Mohamad", url: siteUrl }],
   creator: "Ali Mershed Mohamad",
   publisher: "Ali Mershed Mohamad",
-  applicationName: "Ali Mershed Mohamad Portfolio",
-  generator: "Next.js",
-  referrer: "origin-when-cross-origin",
-  formatDetection: { email: false, address: false, telephone: false },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/assets/logo-sm.webp", type: "image/webp", sizes: "240x213" },
     ],
     apple: [{ url: "/assets/logo.png", sizes: "180x180" }],
-    shortcut: ["/favicon.ico"],
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -73,31 +64,16 @@ export const metadata: Metadata = {
     siteName: "Ali Mershed Mohamad Portfolio",
     title: "Ali Mershed Mohamad — Creative Designer, Video Editor & AI Content Creator",
     description:
-      "Bilingual portfolio of a graphic designer and AI content creator from Damascus, Syria.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Ali Mershed Mohamad — Portfolio",
-      },
-    ],
+      "Bilingual portfolio of a graphic designer and AI content creator from Latakia, Syria.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Ali Mershed Mohamad — Portfolio" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ali Mershed Mohamad — Portfolio",
-    description:
-      "Graphic Designer, Video Editor, and AI Content Creator from Damascus, Syria.",
+    description: "Graphic Designer, Video Editor, and AI Content Creator from Latakia, Syria.",
     images: ["/og-image.png"],
   },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en-US": siteUrl,
-      "ar-SY": siteUrl,
-    },
-  },
-  category: "design",
+  alternates: { canonical: siteUrl, languages: { "en-US": siteUrl, "ar-SY": siteUrl } },
 };
 
 export const viewport: Viewport = {
@@ -109,14 +85,10 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${cairo.variable} ${tajawal.variable} ${readexPro.variable} antialiased`}
-      >
+      <body className={`${cairo.variable} ${tajawal.variable} ${readexPro.variable} antialiased`}>
         <LanguageProvider>{children}</LanguageProvider>
         <Toaster />
       </body>

@@ -12,7 +12,6 @@ const AVATAR_GRADIENTS = [
 
 export default function Testimonials() {
   const { t, locale } = useLanguage();
-
   return (
     <section id="testimonials" className="relative py-24 sm:py-32 overflow-hidden">
       <div className="absolute top-0 start-1/2 -translate-x-1/2 w-[80%] h-[60%] opacity-20 blur-3xl pointer-events-none"

@@ -34,9 +34,15 @@ export default function Hero() {
 
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-              <span className="block text-cream-text">{t.hero.name}</span>
-              <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-gradient-gold text-glow-gold">{t.hero.titleLine1}</span>
-              <span className="block mt-1 text-base sm:text-xl lg:text-2xl text-cream-muted font-medium">{t.hero.titleLine2}</span>
+              <span className="block text-cream-text whitespace-nowrap">
+                {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
+              </span>
+              <span className="block mt-2 text-2xl sm:text-3xl lg:text-4xl text-gradient-gold text-glow-gold whitespace-nowrap">
+                {t.hero.titleLine1}
+              </span>
+              <span className="block mt-1 text-base sm:text-xl lg:text-2xl text-cream-muted font-medium whitespace-nowrap">
+                {t.hero.titleLine2}
+              </span>
             </motion.h1>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}
@@ -92,20 +98,22 @@ export default function Hero() {
                   fill priority sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/30 to-transparent" />
 
-                <div className="absolute top-4 start-4 end-4 flex items-center justify-between">
+                {/* Logo (top-left, ALWAYS — even in RTL) + city below it */}
+                <div className="absolute top-4 left-4 flex flex-col gap-2 items-start z-10">
                   <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden grid place-items-center bg-[#0A192F]/70 backdrop-blur-md p-1 border border-gold-accent/40 glow-gold-sm">
                     <Image src="/assets/logo.webp" alt="Ali Mershed logo" fill sizes="96px" className="object-contain p-1" />
                   </div>
-                  <div className="px-2.5 py-1 rounded-full text-[10px] font-semibold border backdrop-blur bg-gold-accent/15 text-gold-accent border-gold-accent/40 uppercase tracking-wider">
-                    {locale === "ar" ? "دمشق · سوريا" : "Damascus · Syria"}
+                  <div className="px-2.5 py-1 rounded-full text-[10px] font-semibold border backdrop-blur bg-gold-accent/15 text-gold-accent border-gold-accent/40 uppercase tracking-wider whitespace-nowrap" dir="ltr">
+                    Latakia · Syria
                   </div>
                 </div>
 
+                {/* Name overlay at bottom — show name in current language only */}
                 <div className="absolute bottom-4 start-4 end-4">
-                  <div className="text-cream-text font-semibold text-lg leading-tight">
+                  <div className="text-cream-text font-bold text-base sm:text-lg leading-tight whitespace-nowrap drop-shadow-lg">
                     {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
                   </div>
-                  <div className="text-gold-accent text-[10px] uppercase tracking-[0.2em] mt-0.5">
+                  <div className="text-gold-accent text-[10px] uppercase tracking-[0.2em] mt-1 drop-shadow">
                     {locale === "ar" ? "مصمم · مونتير · صانع محتوى AI" : "Designer · Editor · AI Creator"}
                   </div>
                 </div>

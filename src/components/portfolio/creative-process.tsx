@@ -8,7 +8,6 @@ const STEP_ICONS = [ClipboardList, Lightbulb, Camera, Cpu, Scissors, Send];
 
 export default function CreativeProcess() {
   const { t, locale } = useLanguage();
-
   return (
     <section id="process" className="relative py-24 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />

@@ -17,15 +17,10 @@ export default function SelectedWorks() {
   const { t, dir } = useLanguage();
   const [filter, setFilter] = useState<Filter>("all");
   const [active, setActive] = useState<Work | null>(null);
-
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const filtered = filter === "all" ? works : works.filter((w) => w.category === filter);
   const xTarget = useTransform(scrollYProgress, [0, 1], ["0%", "-78%"]);
 
@@ -57,7 +52,6 @@ export default function SelectedWorks() {
   return (
     <section ref={sectionRef} id="work" className="relative py-24 sm:py-32">
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }} className="max-w-3xl">
@@ -72,17 +66,14 @@ export default function SelectedWorks() {
         <div className="mt-8 flex flex-wrap gap-2">
           {filters.map((f) => (
             <button key={f.id} onClick={() => setFilter(f.id)} data-cursor="hover"
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300",
-                filter === f.id ? "btn-gold border-transparent" : "border-navy-line text-cream-muted hover:text-gold-accent hover:border-gold-accent/40"
-              )}>
+              className={cn("px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300",
+                filter === f.id ? "btn-gold border-transparent" : "border-navy-line text-cream-muted hover:text-gold-accent hover:border-gold-accent/40")}>
               {f.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Desktop horizontal scroll */}
       <div className="relative mt-12 hidden md:block h-[460px] overflow-hidden">
         <motion.div ref={trackRef} style={{ x: xTarget, direction: dir === "rtl" ? "rtl" : "ltr" }}
           className="flex gap-6 ps-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pe-[20vw] h-full">
@@ -106,7 +97,6 @@ function WorkCard({ work, index, onOpen }: { work: Work; index: number; onOpen: 
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Play video on hover (desktop only, video only)
   useEffect(() => {
     if (!work.video || !videoRef.current) return;
     if (hovered) {
@@ -185,10 +175,6 @@ function WorkCard({ work, index, onOpen }: { work: Work; index: number; onOpen: 
           </span>
         </div>
       </div>
-
-      <motion.div className="pointer-events-none absolute inset-0 rounded-2xl"
-        style={{ boxShadow: "inset 0 0 0 1px rgba(212,175,55,0.4)" }}
-        animate={{ opacity: hovered ? 1 : 0 }} transition={{ duration: 0.4 }} />
     </motion.div>
   );
 }
@@ -200,7 +186,7 @@ function MobileCarousel({ works, onOpen, categoryColor }: {
   return (
     <div className="md:hidden mt-8">
       <div className="flex gap-4 overflow-x-auto no-scrollbar snap-x-mandatory px-4 pb-6 -mx-4">
-        {works.map((work, i) => {
+        {works.map((work) => {
           const categoryLabel =
             work.category === "graphic" ? t.works.filters.graphic
             : work.category === "video" ? t.works.filters.video
@@ -258,8 +244,7 @@ function CaseStudyModal({ work, onClose }: { work: Work | null; onClose: () => v
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6" onClick={onClose}>
           <div className="absolute inset-0" style={{ background: "rgba(10, 25, 47, 0.88)", backdropFilter: "blur(8px)" }} />
-          <motion.div
-            initial={{ y: 40, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 30, opacity: 0, scale: 0.98 }}
+          <motion.div initial={{ y: 40, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 30, opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} onClick={(e) => e.stopPropagation()}
             className="relative w-full sm:max-w-3xl max-h-[92vh] overflow-y-auto no-scrollbar rounded-t-3xl sm:rounded-3xl glass-card border border-gold-accent/20">
             <div className="relative h-44 sm:h-56" style={{ background: work.accent }}>
@@ -282,7 +267,6 @@ function CaseStudyModal({ work, onClose }: { work: Work | null; onClose: () => v
                 {work.isAi ? t.works.aiCaseFlow : t.works.caseFlow}
               </div>
 
-              {/* Video player for video works */}
               {work.video && (
                 <div>
                   <div className="text-xs uppercase tracking-[0.2em] text-gold-accent font-semibold mb-3">

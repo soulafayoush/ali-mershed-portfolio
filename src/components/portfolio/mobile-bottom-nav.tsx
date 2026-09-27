@@ -11,15 +11,13 @@ export default function MobileBottomNav() {
 
   useEffect(() => {
     const onScroll = () => {
-      const sections = ["home", "work", "services", "contact"];
+      const sections = ["home", "services", "work", "contact"];
       let current = "home";
       for (const id of sections) {
         const el = document.getElementById(id);
         if (!el) continue;
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 180 && rect.bottom >= 180) {
-          current = id; break;
-        }
+        if (rect.top <= 180 && rect.bottom >= 180) { current = id; break; }
       }
       setActive(current);
     };
@@ -30,8 +28,8 @@ export default function MobileBottomNav() {
 
   const items = [
     { id: "home", label: t.mobileNav.home, icon: Home },
-    { id: "work", label: t.mobileNav.work, icon: Briefcase },
     { id: "services", label: t.mobileNav.services, icon: Sparkles },
+    { id: "work", label: t.mobileNav.work, icon: Briefcase },
     { id: "contact", label: t.mobileNav.contact, icon: Mail },
   ];
 

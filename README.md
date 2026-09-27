@@ -1,6 +1,6 @@
 # Ali Mershed Mohamad — Portfolio
 
-Bilingual (Arabic/English with RTL/LTR) personal portfolio for **Ali Mershed Mohamad** — Creative Designer, Video Editor & AI Content Creator from Damascus, Syria.
+Bilingual (Arabic/English with RTL/LTR) personal portfolio for **Ali Mershed Mohamad** — Graphic Designer, Video Editor & AI Content Creator from Latakia, Syria.
 
 ## Tech Stack
 
@@ -13,7 +13,7 @@ Bilingual (Arabic/English with RTL/LTR) personal portfolio for **Ali Mershed Moh
 ## Features
 
 - 🌍 **Bilingual** — Full AR/EN support with auto RTL/LTR
-- 🎬 **Real videos** — 9 ad spots compressed for web (720p H.264, faststart)
+- 🎬 **Real videos** — Ad spots with audio, compressed for web (720p H.264 + AAC, faststart)
 - 🖼️ **Optimized media** — WebP images, blurred certificate thumbnails, click-to-reveal lightbox
 - 📱 **Mobile-first** — Floating bottom dock, sticky conversion bar, touch-swipe carousels
 - 🎯 **Desktop polish** — Custom cursor, mouse spotlight, scroll progress, back-to-top
@@ -24,10 +24,10 @@ Bilingual (Arabic/English with RTL/LTR) personal portfolio for **Ali Mershed Moh
 1. Hero (profile + logo + stats)
 2. Tools marquee
 3. Services (5 cards)
-4. Selected Work (12 projects with case-study modals + Before/After slider)
+4. Selected Work (14 projects with case-study modals + Before/After slider + video player)
 5. Creative Process (6 steps + AI philosophy)
 6. About (bio + experience + education + languages + skills)
-7. Certificates (8 with click-to-reveal)
+7. Certificates (6 with click-to-reveal — properly matched to images)
 8. Testimonials
 9. Contact (form + direct WhatsApp/Email + socials)
 

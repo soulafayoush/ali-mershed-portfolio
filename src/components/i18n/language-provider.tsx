@@ -4,11 +4,8 @@ import React, { createContext, useContext, useEffect, useCallback } from "react"
 import { dictionaries, type Dict, type Locale } from "@/lib/i18n/dict";
 
 type LanguageContextValue = {
-  locale: Locale;
-  dir: "ltr" | "rtl";
-  t: Dict;
-  toggle: () => void;
-  setLocale: (l: Locale) => void;
+  locale: Locale; dir: "ltr" | "rtl"; t: Dict;
+  toggle: () => void; setLocale: (l: Locale) => void;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -26,9 +23,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith("ar")) {
-        setLocaleState("ar");
-      }
+      if (browserLang.startsWith("ar")) setLocaleState("ar");
     } catch { /* noop */ }
   }, []);
 
@@ -43,11 +38,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const toggle = useCallback(() => setLocaleState((p) => (p === "en" ? "ar" : "en")), []);
 
   const value: LanguageContextValue = {
-    locale,
-    dir: locale === "ar" ? "rtl" : "ltr",
-    t: dictionaries[locale],
-    toggle,
-    setLocale,
+    locale, dir: locale === "ar" ? "rtl" : "ltr",
+    t: dictionaries[locale], toggle, setLocale,
   };
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

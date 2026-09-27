@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/components/i18n/language-provider";
 import { cn } from "@/lib/utils";
 
-const SECTION_IDS = ["home", "work", "services", "process", "about", "contact"] as const;
+const SECTION_IDS = ["home", "services", "work", "process", "about", "contact"] as const;
 
 export default function Navbar() {
   const { t, locale, toggle } = useLanguage();
@@ -23,10 +23,7 @@ export default function Navbar() {
         const el = document.getElementById(id);
         if (!el) continue;
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 120 && rect.bottom >= 120) {
-          current = id;
-          break;
-        }
+        if (rect.top <= 120 && rect.bottom >= 120) { current = id; break; }
       }
       setActiveSection(current);
     };
@@ -37,8 +34,8 @@ export default function Navbar() {
 
   const navLinks = [
     { id: "home", label: t.nav.home },
-    { id: "work", label: t.nav.work },
     { id: "services", label: t.nav.services },
+    { id: "work", label: t.nav.work },
     { id: "process", label: t.nav.process },
     { id: "about", label: t.nav.about },
     { id: "contact", label: t.nav.contact },
@@ -51,12 +48,9 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+      <motion.header initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={cn("fixed top-0 inset-x-0 z-50 transition-all duration-500", scrolled ? "py-2" : "py-4")}
-      >
+        className={cn("fixed top-0 inset-x-0 z-50 transition-all duration-500", scrolled ? "py-2" : "py-4")}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className={cn(
             "flex items-center justify-between rounded-2xl transition-all duration-500",
@@ -64,15 +58,13 @@ export default function Navbar() {
           )}>
             <button onClick={() => scrollTo("home")} className="flex items-center gap-3 group" data-cursor="hover">
               <span className="relative grid place-items-center w-14 h-14 rounded-lg overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, rgba(212,175,55,0.12), rgba(10,25,47,0.6))",
+                style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.12), rgba(10,25,47,0.6))",
                   border: "1px solid rgba(212, 175, 55, 0.4)",
-                  boxShadow: "0 0 18px -4px rgba(212, 175, 55, 0.6)",
-                }}>
+                  boxShadow: "0 0 18px -4px rgba(212, 175, 55, 0.6)" }}>
                 <Image src="/assets/logo.webp" alt="Ali Mershed logo" fill sizes="56px" className="object-contain p-1" />
               </span>
               <span className="hidden sm:flex flex-col leading-tight">
-                <span className="text-base font-bold text-cream-text tracking-tight">
+                <span className="text-base font-bold text-cream-text tracking-tight whitespace-nowrap">
                   {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.22em] text-gold-accent font-medium">
@@ -84,10 +76,8 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <button key={link.id} onClick={() => scrollTo(link.id)} data-cursor="hover"
-                  className={cn(
-                    "relative px-3 py-2 text-sm rounded-lg transition-colors duration-300",
-                    activeSection === link.id ? "text-gold-accent" : "text-cream-muted hover:text-cream-text"
-                  )}>
+                  className={cn("relative px-3 py-2 text-sm rounded-lg transition-colors duration-300",
+                    activeSection === link.id ? "text-gold-accent" : "text-cream-muted hover:text-cream-text")}>
                   {link.label}
                   {activeSection === link.id && (
                     <motion.span layoutId="nav-active" className="absolute inset-0 -z-10 rounded-lg"
@@ -124,10 +114,8 @@ export default function Navbar() {
             <div className="glass-card rounded-2xl p-3 space-y-1">
               {navLinks.map((link) => (
                 <button key={link.id} onClick={() => scrollTo(link.id)}
-                  className={cn(
-                    "w-full text-start px-4 py-3 rounded-xl text-base font-medium transition-colors",
-                    activeSection === link.id ? "bg-gold-accent/10 text-gold-accent" : "text-cream-muted hover:bg-navy-elevated/50 hover:text-cream-text"
-                  )}>
+                  className={cn("w-full text-start px-4 py-3 rounded-xl text-base font-medium transition-colors",
+                    activeSection === link.id ? "bg-gold-accent/10 text-gold-accent" : "text-cream-muted hover:bg-navy-elevated/50 hover:text-cream-text")}>
                   {link.label}
                 </button>
               ))}

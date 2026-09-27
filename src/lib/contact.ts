@@ -8,5 +8,5 @@ export const CONTACT = {
     linkedin: "https://www.linkedin.com/in/ali-mershed-mohamad-352106392",
     portfolio: "https://drive.google.com/drive/folders/1h0XylL7gwx3UdribhuF7eAVWI0AWJ5uH",
   },
-  location: { en: "Damascus, Syria", ar: "دمشق، سوريا" },
+  location: { en: "Latakia, Syria", ar: "اللاذقية، سوريا" },
 } as const;

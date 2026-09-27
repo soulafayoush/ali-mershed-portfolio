@@ -7,16 +7,14 @@ import { CONTACT } from "@/lib/contact";
 
 export default function Footer() {
   const { t, locale } = useLanguage();
-
   const quickLinks = [
     { id: "home", label: t.nav.home },
-    { id: "work", label: t.nav.work },
     { id: "services", label: t.nav.services },
+    { id: "work", label: t.nav.work },
     { id: "process", label: t.nav.process },
     { id: "about", label: t.nav.about },
     { id: "contact", label: t.nav.contact },
   ];
-
   const socialLinks = [
     { id: "facebook", label: "Facebook", href: CONTACT.social.facebook, icon: Facebook },
     { id: "instagram", label: "Instagram", href: CONTACT.social.instagram, icon: Instagram },
@@ -38,7 +36,7 @@ export default function Footer() {
                 <Image src="/assets/logo.webp" alt="Ali Mershed logo" fill sizes="56px" className="object-contain p-1" />
               </span>
               <div className="flex flex-col leading-tight">
-                <span className="text-base font-bold text-cream-text tracking-tight">
+                <span className="text-base font-bold text-cream-text tracking-tight whitespace-nowrap">
                   {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.22em] text-gold-accent font-medium">

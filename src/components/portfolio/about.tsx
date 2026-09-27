@@ -27,7 +27,6 @@ export default function About() {
 
         <div className="mt-12 grid lg:grid-cols-12 gap-8">
           <div className="lg:col-span-7 space-y-6">
-            {/* Real portrait photo */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }} className="relative rounded-2xl overflow-hidden glass-card aspect-[16/10]">
               <Image src="/assets/profile.webp" alt={locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
@@ -35,7 +34,7 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent" />
               <div className="absolute bottom-4 start-4 end-4 flex items-end justify-between">
                 <div>
-                  <div className="text-lg font-semibold text-cream-text drop-shadow">
+                  <div className="text-lg font-bold text-cream-text drop-shadow whitespace-nowrap">
                     {locale === "ar" ? "علي مرشد محمد" : "Ali Mershed Mohamad"}
                   </div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-gold-accent mt-1">{t.about.subtitle}</div>
@@ -53,7 +52,6 @@ export default function About() {
               </motion.p>
             ))}
 
-            {/* What distinguishes my approach */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6 }} className="mt-8 rounded-2xl p-6 glass-card">
               <div className="flex items-center gap-2 text-gold-accent mb-4">
@@ -71,7 +69,6 @@ export default function About() {
               </ul>
             </motion.div>
 
-            {/* Experience */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">
               <div className="flex items-center gap-2 text-gold-accent mb-4">
@@ -100,7 +97,6 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Expertise */}
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">
               <div className="flex items-center gap-2 text-gold-accent mb-4">
@@ -115,7 +111,6 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Right column: education, languages, skills */}
           <div className="lg:col-span-5 space-y-6">
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }} className="rounded-2xl p-6 glass-card">

@@ -6,7 +6,7 @@ import { Award, BadgeCheck, ExternalLink, Lock, X, ChevronRight, ChevronLeft } f
 import Image from "next/image";
 import { useLanguage } from "@/components/i18n/language-provider";
 
-const CERT_COUNT = 8;
+const CERT_COUNT = 6;
 const CERT_ASSETS = Array.from({ length: CERT_COUNT }, (_, i) => ({
   thumb: `/assets/certs/cert-${String(i + 1).padStart(2, "0")}-thumb.webp`,
   full: `/assets/certs/cert-${String(i + 1).padStart(2, "0")}-full.webp`,
