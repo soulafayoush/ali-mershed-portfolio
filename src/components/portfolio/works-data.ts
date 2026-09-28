@@ -136,7 +136,6 @@ export const works: Work[] = [
     tools: ["Gemini", "Nano Banana", "Adobe Photoshop"],
     process: { en: "Idea → AI Generation → Creative Direction → Editing → Final Visual.", ar: "الفكرة ← التوليد بالذكاء الاصطناعي ← التوجيه الإبداعي ← التحرير ← المرئي النهائي." },
     result: { en: "Premium AI ad visual delivered for digital advertising.", ar: "مرئي إعلاني فاخر بالذكاء الاصطناعي سُلّم للإعلانات الرقمية." },
-    hasBeforeAfter: true,
   },
 
   // ===== VIDEO =====
@@ -294,6 +293,5 @@ export const works: Work[] = [
     tools: ["Adobe Photoshop", "Adobe Premiere Pro", "Adobe After Effects", "Gemini", "Nano Banana", "Runway", "Kling", "ElevenLabs", "Claude"],
     process: { en: "Project → Brief → Concept → My Role → Tools → Process → Final Result. AI projects flow: Idea → AI Generation → Creative Direction → Editing → Final Visual.", ar: "المشروع ← الموجز ← المفهوم ← دوري ← الأدوات ← العملية ← النتيجة. مشاريع الذكاء الاصطناعي: الفكرة ← التوليد ← التوجيه الإبداعي ← التحرير ← المرئي النهائي." },
     result: { en: "An integrated campaign delivered across IG, FB, and digital ads — design, video, and AI in one brand voice.", ar: "حملة متكاملة سُلّمت عبر IG وFB والإعلانات الرقمية — تصميم وفيديو وذكاء اصطناعي بصوت علامة واحد." },
-    hasBeforeAfter: true,
   },
 ];

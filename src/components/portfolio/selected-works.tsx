@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
   ArrowRight, ArrowLeft, X, Wrench, Sparkles,
@@ -17,13 +17,8 @@ export default function SelectedWorks() {
   const { t, dir } = useLanguage();
   const [filter, setFilter] = useState<Filter>("all");
   const [active, setActive] = useState<Work | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const filtered = filter === "all" ? works : works.filter((w) => w.category === filter);
-  // Horizontal scroll only for LTR. For RTL, use static layout to avoid left-shift issues.
-  const xTarget = useTransform(scrollYProgress, [0, 1], ["0%", "-78%"]);
 
   const filters: { id: Filter; label: string }[] = [
     { id: "all", label: t.works.filters.all },
@@ -51,7 +46,7 @@ export default function SelectedWorks() {
     : "text-cream-text border-cream-text/40 bg-cream-text/5";
 
   return (
-    <section ref={sectionRef} id="work" className="relative py-24 sm:py-32">
+    <section id="work" className="relative py-24 sm:py-32">
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
@@ -75,28 +70,14 @@ export default function SelectedWorks() {
         </div>
       </div>
 
-      {/* Desktop horizontal scroll (LTR only). RTL uses a clean static grid. */}
-      <div className="relative mt-12 hidden md:block h-[460px] overflow-hidden" style={{ display: dir === "rtl" ? "none" : undefined }}>
-        <motion.div ref={trackRef} style={{ x: xTarget }}
-          className="flex gap-6 ps-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pe-[20vw] h-full">
-          {filtered.map((work, i) => (
-            <WorkCard key={work.id} work={work} onOpen={() => setActive(work)} />
-          ))}
-        </motion.div>
-        <div className="pointer-events-none absolute inset-y-0 start-0 w-32 bg-gradient-to-r from-[#0A192F] to-transparent rtl-flip" />
-        <div className="pointer-events-none absolute inset-y-0 end-0 w-32 bg-gradient-to-l from-[#0A192F] to-transparent rtl-flip" />
+      {/* Desktop: static grid for both LTR and RTL — clean, no scroll issues */}
+      <div className="hidden md:grid mt-12 gap-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))" }}>
+        {filtered.map((work) => (
+          <div key={work.id} className="h-[440px]">
+            <WorkCard work={work} onOpen={() => setActive(work)} />
+          </div>
+        ))}
       </div>
-
-      {/* RTL: static grid layout for desktop (avoids horizontal-scroll shift issues) */}
-      {dir === "rtl" && (
-        <div className="hidden md:grid mt-12 gap-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))" }}>
-          {filtered.map((work) => (
-            <div key={work.id} className="h-[440px]">
-              <WorkCard work={work} onOpen={() => setActive(work)} />
-            </div>
-          ))}
-        </div>
-      )}
 
       <MobileCarousel works={filtered} onOpen={(w) => setActive(w)} categoryColor={categoryColor} />
 
@@ -162,11 +143,6 @@ function WorkCard({ work, onOpen }: { work: Work; onOpen: () => void }) {
         {work.isAi && (
           <div className="absolute bottom-4 start-4 px-2 py-1 rounded-full bg-gold-bright/20 border border-gold-bright/40 text-[9px] uppercase tracking-wider text-gold-bright backdrop-blur">
             AI · Creative Directed
-          </div>
-        )}
-        {work.hasBeforeAfter && (
-          <div className="absolute bottom-4 end-4 px-2 py-1 rounded-full bg-electric-blue/20 border border-electric-blue/40 text-[9px] uppercase tracking-wider text-electric-blue backdrop-blur">
-            Before / After
           </div>
         )}
       </div>
@@ -235,7 +211,6 @@ function MobileCarousel({ works, onOpen, categoryColor }: {
 
 function CaseStudyModal({ work, onClose }: { work: Work | null; onClose: () => void }) {
   const { t, locale } = useLanguage();
-  const [beforeAfterPos, setBeforeAfterPos] = useState(50);
 
   const caseRows = work ? [
     { icon: <Target className="w-4 h-4" />, label: t.works.caseLabels.brief, text: work.brief[locale] },
@@ -285,18 +260,6 @@ function CaseStudyModal({ work, onClose }: { work: Work | null; onClose: () => v
                 </div>
               )}
 
-              {work.hasBeforeAfter && (
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs uppercase tracking-[0.2em] text-gold-accent font-semibold">
-                      {locale === "ar" ? "قبل / بعد" : "Before / After"}
-                    </span>
-                    <span className="text-[10px] text-cream-dim">{t.works.swipeHint}</span>
-                  </div>
-                  <BeforeAfterSlider color={work.accent} afterImage={work.image} value={beforeAfterPos} onChange={setBeforeAfterPos} />
-                </div>
-              )}
-
               <div className="grid sm:grid-cols-2 gap-4">
                 {caseRows.map((row, i) => (
                   <motion.div key={row.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
@@ -342,72 +305,3 @@ function CaseStudyModal({ work, onClose }: { work: Work | null; onClose: () => v
   );
 }
 
-function BeforeAfterSlider({ color, afterImage, value, onChange }: {
-  color: string; afterImage: string; value: number; onChange: (v: number) => void;
-}) {
-  const { t, locale } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const dragging = useRef(false);
-
-  const updateFromClientX = (clientX: number) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
-    onChange(Math.max(0, Math.min(100, pct)));
-  };
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => { if (dragging.current) updateFromClientX(e.clientX); };
-    const onUp = () => { dragging.current = false; };
-    const onTouchMove = (e: TouchEvent) => { if (dragging.current) updateFromClientX(e.touches[0].clientX); };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onUp);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onUp);
-    };
-  }, []);
-
-  return (
-    <div ref={ref} className="relative h-40 sm:h-52 rounded-xl overflow-hidden select-none cursor-ew-resize touch-none"
-      onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
-      onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}>
-      {/* After (right side) — the final AI-directed visual */}
-      <div className="absolute inset-0" style={{ background: color }}>
-        <Image src={afterImage} alt="After" fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/40 to-transparent" />
-      </div>
-      {/* Before (left side) — the initial raw input, before creative direction.
-          No real source image; shown as a dark placeholder representing the blank canvas. */}
-      <div className="absolute inset-0"
-        style={{ background: "linear-gradient(135deg, #0A192F 0%, #172A45 100%)", clipPath: `inset(0 ${100 - value}% 0 0)` }}>
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-          <span className="text-[10px] uppercase tracking-[0.25em] text-cream-dim/70 font-medium">
-            {locale === "ar" ? "الموجز الأولي" : "Initial Brief"}
-          </span>
-          <span className="text-xs uppercase tracking-[0.3em] text-cream-dim font-semibold">
-            {locale === "ar" ? "قبل التوجيه" : "Before Direction"}
-          </span>
-        </div>
-      </div>
-      <div
-        className="absolute top-0 bottom-0 w-0.5 bg-gold-accent"
-        style={{ left: `${value}%`, transform: "translateX(-50%)" }}
-      >
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-gold-accent text-navy-base shadow-lg"
-        >
-          <ArrowLeft className="w-3 h-3" />
-          <ArrowRight className="w-3 h-3 -ms-1" />
-        </div>
-      </div>
-      <div className="absolute top-3 start-3 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#0A192F]/80 text-cream-text">{t.works.before}</div>
-      <div className="absolute top-3 end-3 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#0A192F]/80 text-cream-text">{t.works.after}</div>
-    </div>
-  );
-}
